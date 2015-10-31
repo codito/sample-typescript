@@ -1,10 +1,19 @@
 var gulp = require("gulp");
 var rimraf = require("rimraf");
+var tsb = require("gulp-tsb");
 
 var buildDirectory = "_build";
 
+// create and keep compiler
+var compilation = tsb.create({
+    target: 'es5',
+    module: 'commonjs',
+    declaration: false
+});
+
 gulp.task("build", ["clean"], function() {
     gulp.src("src/app.ts")
+        .pipe(compilation())
         .pipe(gulp.dest(buildDirectory));
 });
 
