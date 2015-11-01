@@ -1,8 +1,8 @@
 /// <reference path="../typings/tsd.d.ts" />
 /// <reference path="../src/app.ts" />
 
-var assert = require("assert");
-var app = require("./app");
+import * as assert from "assert";
+import * as app from "../src/app";
 
 describe("HelloWorldWriter.Write", () : void => {
   it("should throw not implemented error", () : void => {
