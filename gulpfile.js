@@ -15,13 +15,13 @@ var compilation = tsb.create({
     declaration: false
 });
 
-gulp.task("build", ["clean", "lint"], function() {
+gulp.task("build", ["lint"], function() {
     return gulp.src(sourceFiles, { base: "." })
         .pipe(compilation())
         .pipe(gulp.dest(buildDirectory));
 });
 
-gulp.task("lint", ["clean"], function() {
+gulp.task("lint", function() {
     return gulp.src(sourceFiles)
         .pipe(tslint())
         .pipe(tslint.report("verbose"))
@@ -37,6 +37,10 @@ gulp.task("clean", function(done) {
 gulp.task("test", ["build"], function() {
     return gulp.src(testFiles, { read: false })
         .pipe(mocha());
+});
+
+gulp.task("watch", function() {
+    return gulp.watch(sourceFiles, ["test"]);
 });
 
 gulp.task("default", ["build"]);
